@@ -140,11 +140,19 @@ function ElasticRuleClass() {
 
     level = receiveRate / (isPlaying - kp * queueLength - ki * qI);
 
-    for (i = quantize.length - 1; i > 0; i--) {
+    for (i = quantize.length - 1; i >= 0; i--) {
       if (quantize[i] < level) {
         q = i;
         break;
       }
+    }
+    
+    if (i < 0) {
+      q = 0;
+    }
+
+    if (ElasticRuleClass.playerInstance.getQualityFor('video') === q) {
+      q = SwitchRequest.NO_CHANGE;
     }
 
     console.log(
