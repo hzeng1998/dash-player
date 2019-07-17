@@ -132,9 +132,6 @@ function ElasticRuleClass() {
     //get queue length
     queueLength = dashMetrics.getCurrentBufferLevel(metrics);
 
-    console.log("metrics:");
-    console.log(metrics);
-
     //calculate
     qI += downloadTime * (queueLength - qT);
 
@@ -154,6 +151,22 @@ function ElasticRuleClass() {
     if (ElasticRuleClass.playerInstance.getQualityFor('video') === q) {
       q = SwitchRequest.NO_CHANGE;
     }
+  
+/*     if (q === 0 && ElasticRuleClass.playerInstance.getQualityFor('audio') !== 0) {      
+      ElasticRuleClass.playerInstance.setAutoSwitchQualityFor('audio', false);
+      ElasticRuleClass.playerInstance.setQualityFor('audio', 0);
+      console.log(
+        `[CustomRules][${mediaType}][ElasticRule] Switch Audio: q=0`
+      );
+    }
+
+    if (q !== 0 && ElasticRuleClass.playerInstance.getQualityFor('audio') === 0) {
+      ElasticRuleClass.playerInstance.setAutoSwitchQualityFor('audio', false);
+      ElasticRuleClass.playerInstance.setQualityFor('audio', 1);
+      console.log(
+        `[CustomRules][${mediaType}][ElasticRule] Switch Audio: q=1`
+      );
+    } */
 
     console.log(
       `[CustomRules][${mediaType}][ElasticRule] SwitchRequest: q=${q}`
