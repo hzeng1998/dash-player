@@ -68,8 +68,7 @@
 
         <div class="branding">
             <a href="https://github.com/hzeng1998/dash-player" target="_blank"><img class="image" src="app/img/if.png"/></a>
-            <span id="big-title">Reference Client</span>
-            <span ng-bind="version"></span>
+
             <span id="commit-info"><!-- commit-info --></span>
         </div>
 
@@ -90,9 +89,13 @@
 
         <form id="file" class="form-inline">
 
-            <div class="form-group col-xs-6">
+            <div class="form-group col-xs-2">
                 <label for="FormControlFile">File input</label>
                 <input type="file" class="form-control-file" id="FormControlFile">
+            </div>
+
+            <div class="progress col-xs-6">
+                <span class="green" style="width: 100%;"><span>100%</span></span>
             </div>
 
             <button type="submit" class="btn btn-primary">Confirm</button>
@@ -119,9 +122,7 @@
         </script>
     </div>
 
-    <div class="progress col-xs-6">
-        <span class="green" style="width: 100%;"><span>100%</span></span>
-    </div>
+
 
     <!-- OPTIONS MENU-->
     <div ng-cloak class="row options-wrapper" ng-class="{'options-show':optionsGutter, 'options-hide':!optionsGutter}">
