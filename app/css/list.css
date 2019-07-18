@@ -152,13 +152,15 @@ a.back:hover{
 	color: #fff;
 }
 #toggle div.active {
-    background: #5cf25c;
+    background: #ffffff;
 }
 #toggle div {
-
     cursor: pointer;
     display: block;
-       border-bottom: 1px solid rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    display: -webkit-box;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
 }
 
  span.menu-icons {
@@ -199,19 +201,25 @@ span.the-btn {
     list-style: circle;
     width: 240px;
     padding: 0;
-  	 margin: 0 0 0 50px;
+    text-align: center;
 
 }
 #toggle a {
-	  margin: 0 0 0 47px;
+    margin-left: 20px;
     padding: 0;
     font-family: 'Lato';
     color: #fff;
     line-height: 41px;
     font-weight: normal;
-    font-size: 18px;
+    font-size: 16px;
     text-decoration: none;
 
+}
+
+#toggle img {
+    margin-left: 10px;
+    margin-top: 5px;
+    border-radius: 5px;
 }
 
 #toggle ul li {
