@@ -90,7 +90,7 @@
 
         <form id="file" class="form-inline">
 
-            <div class="form-group col-xs-8">
+            <div class="form-group col-xs-6">
                 <label for="FormControlFile">File input</label>
                 <input type="file" class="form-control-file" id="FormControlFile">
             </div>
@@ -100,7 +100,7 @@
                 {{getOptionsButtonLabel()}}
             </button>
         </form>
-            <script>
+        <script>
             var handleUpload = function (event) {
                 event.preventDefault();
                 var data = new FormData(document.querySelector('#file'));
@@ -117,6 +117,10 @@
                 })
             }
         </script>
+    </div>
+
+    <div class="progress col-xs-6">
+        <span class="green" style="width: 100%;"><span>100%</span></span>
     </div>
 
     <!-- OPTIONS MENU-->
