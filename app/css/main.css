@@ -19,6 +19,8 @@ a:hover {
 
 .container {
     max-width: 1600px;
+    position: relative;
+    overflow: hidden;
 }
 
 .btn:focus {
