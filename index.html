@@ -88,9 +88,10 @@
                 for (var i = 0; i < video_list.length; i++) {
                   var mpdPath = "http://137.132.92.142:8082" + video_list[i].url + ".mpd";
                   $('#toggle').append('<li>\n' +
-                      '            <div class="active border">\n' +
-                      '              <img src='+ 'http://137.132.92.142:8082' + video_list[i].url + '.jpg width="120">\n' +
-                      '              <a href="#" onclick= loadVideo(\'' + mpdPath + '\')>' + video_list[i].name + '</a>' +
+                      '            <div>\n' +
+                      '              <h4 id="video_id">'+ (i+1) + '</h4>' +
+                      '              <img src='+ 'http://137.132.92.142:8082' + video_list[i].url + '.jpg width="100">\n' +
+                      '              <p onclick= loadVideo(\'' + mpdPath + '\')>' + video_list[i].name + '</p>' +
                       '            </div>\n' +
                       '          </li>')
                 }

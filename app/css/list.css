@@ -30,11 +30,11 @@ Author: Samuel Dalusung
 }
 
 #nav {
-    width: 320px;
+    width: 360px;
     height: 100%;
     background: #ffffff;
     position: absolute;
-    left: -360px;
+    left: -380px;
     top: 0;
     overflow: scroll;
     
@@ -92,7 +92,7 @@ Author: Samuel Dalusung
 }
 
 #title{
-	margin-left: 30px;
+	margin-left: 80px;
 	padding: 1em;
 	color: rgba(0,0,0,0.4);
 	text-shadow: 0 0 1px rgba(0,0,0,0.5);
@@ -102,10 +102,6 @@ Author: Samuel Dalusung
 }
 
 
-.border{
-border-top: 1px solid rgba(0,0,0,0.2);
-
-}
 
 a.back {
    color: #38935f;
@@ -158,7 +154,6 @@ a.back:hover{
 #toggle div {
     cursor: pointer;
     display: block;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
     display: -webkit-box;
     -webkit-box-orient: horizontal;
 }
@@ -195,41 +190,41 @@ span.the-btn {
 
 }
 
-#toggle li a {
-    line-height: 41px;
+#toggle li p {
+    line-height: 20px;
+    max-height: 40px;
     color: #000;
     list-style: circle;
-    width: 240px;
+    width: 120px;
     padding: 0;
-    text-align: center;
+    word-break:break-all;
+    text-align: left;
 }
-#toggle a {
-    margin-left: 20px;
+#toggle p {
+    margin-left: 10px;
+    margin-top: 10px;
     padding: 0;
-    font-family: 'Lato';
-    color: #fff;
-    line-height: 41px;
     font-weight: normal;
-    font-size: 16px;
+    font-size: 14px;
     text-decoration: none;
     display: -webkit-box;
+    overflow: hidden;
 }
 
 #toggle img {
     margin-left: 10px;
-    margin-top: 5px;
-    margin-bottom: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     border-radius: 5px;
 }
 
-#toggle ul li {
-     margin-left: 109px;   
-}
-
-#toggle ul li a:hover{
-	background: #1f9d55;
-}
-
-#toggle ul li a {
-     margin-left: 0;   
+#toggle #video_id {
+    margin-left: 30px;
+    width: 25px;
+    height: 25px;
+    color: white;
+    background: #66CD00;
+    border-radius : 5px;
+    text-align: center;
+    Line-Height: 25px;
 }
