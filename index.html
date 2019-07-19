@@ -78,31 +78,32 @@
       <div id="nav">
         <h2 id="title"><i class="fa fa-sitemap"></i> Video List</h2>
         <ul id="toggle">
-          <li>
-            <div class="active border">
-              <img src="./app/img/web.jpg" width="150">
-              <a href="#">1124152146153753745235wet262q46.mp4</a>
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <a href="#">2.mp4</a>
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <a href="#">3.mp4</a>
-            </div>
-          </li>
-
-          <li>
-            <div>
-              <a href="#">4.mp4</a>
-            </div>
-          </li>
         </ul>
+        <script>
+          $(document).ready(function () {
+            $.ajax({
+              url: 'http://137.132.92.142:8082/video_list',
+              type: 'GET',
+              success: function (video_list) {
+                for (var i = 0; i < video_list.length; i++) {
+                  var mpdPath = "http://137.132.92.142:8082" + video_list[i].url + ".mpd";
+                  $('#toggle').append('<li>\n' +
+                      '            <div class="active border">\n' +
+                      '              <img src='+ 'http://137.132.92.142:8082' + video_list[i].url + '.jpg width="120">\n' +
+                      '              <a href="#" onclick= loadVideo(\'' + mpdPath + '\')>' + video_list[i].name + '</a>' +
+                      '            </div>\n' +
+                      '          </li>')
+                }
+              }
+            });
+           });
+          var loadVideo = function (url) {
+              var appElement = document.querySelector('[ng-controller=DashController]');
+              var $scope = angular.element(appElement).scope();
+              $scope.setStream({url: url});
+              $scope.doLoad();
+          }
+        </script>
       </div>
 
       <div class="row title-header">
@@ -145,7 +146,7 @@
           {{getOptionsButtonLabel()}}
         </button>
         <script>
-          var socket = io('/');
+          var socket = io('http://137.132.92.142:8082/');
           socket.on('progress', msg => {
             $('#fileUploadProcess').attr({ 'aria-valuenow': msg, 'style': 'width:' + msg + '%' });
             if (msg == '100') {
@@ -164,7 +165,7 @@
             var formData = new FormData();
             formData.append("upload", $("#FormControlFile")[0].files[0]);
             $.ajax({
-              url: '/upload_video',
+              url: 'http://137.132.92.142:8082/upload_video',
               type: 'POST',
               data: formData,
               processData: false,
