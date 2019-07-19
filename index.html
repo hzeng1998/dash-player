@@ -15,7 +15,8 @@
   <link rel="stylesheet" href="app/css/list.css">
   <link rel="stylesheet" href="app/css/default.css">
   <link rel="stylesheet" href="app/lib/dash/contrib/akamai/controlbar/controlbar.css">
-
+  <!--socket.io-->
+  <script src="/socket.io/socket.io.js"></script>
   <!--Libs-->
   <script src="app/lib/jquery/jquery-3.1.1.min.js"></script>
   <script src="app/js/custom.js"></script>
@@ -144,7 +145,15 @@
           {{getOptionsButtonLabel()}}
         </button>
         <script>
-
+          var socket = io('/');
+          socket.on('progress', msg => {
+            $('#fileUploadProcess').attr({ 'aria-valuenow': msg, 'style': 'width:' + msg + '%' });
+            if (msg == '100') {
+              $('#uploadButton').removeAttr('disabled');
+              
+              $("#uploadButton").text('Confirm');
+            }
+          })
           var resetProgress = function (id) {
             $(id).attr({
               'aria-valuenow': 0, 'style': 'width:0'
@@ -155,7 +164,7 @@
             var formData = new FormData();
             formData.append("upload", $("#FormControlFile")[0].files[0]);
             $.ajax({
-              url: 'http://137.132.92.142:8082/upload_video',
+              url: '/upload_video',
               type: 'POST',
               data: formData,
               processData: false,
@@ -172,7 +181,8 @@
                 resetProgress('#fileUploadProcess');
               },
               success: function () {
-                $("#uploadButton").removeAttr('disabled');
+                $("#uploadButton").text('Transcoding');
+                resetProgress('#fileUploadProcess');
               }
             });
           }
