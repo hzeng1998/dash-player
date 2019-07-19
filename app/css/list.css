@@ -160,8 +160,7 @@ a.back:hover{
     display: block;
     border-bottom: 1px solid rgba(0,0,0,0.2);
     display: -webkit-box;
-    overflow: hidden;
-    -webkit-box-orient: vertical;
+    -webkit-box-orient: horizontal;
 }
 
  span.menu-icons {
@@ -203,7 +202,6 @@ span.the-btn {
     width: 240px;
     padding: 0;
     text-align: center;
-
 }
 #toggle a {
     margin-left: 20px;
@@ -214,7 +212,7 @@ span.the-btn {
     font-weight: normal;
     font-size: 16px;
     text-decoration: none;
-
+    display: -webkit-box;
 }
 
 #toggle img {
