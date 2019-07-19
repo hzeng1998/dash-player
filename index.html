@@ -172,7 +172,7 @@
                 resetProgress('#fileUploadProcess');
               },
               success: function () {
-                $("#uploadButton").attr('disabled', 'false');
+                $("#uploadButton").removeAttr('disabled');
               }
             });
           }
