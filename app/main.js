@@ -153,6 +153,7 @@ app.controller('DashController', function ($scope, sources, contributors, dashif
     $scope.videotoggle = false;
     $scope.audiotoggle = false;
     $scope.optionsGutter = false;
+    $scope.uploadGutter = false;
     $scope.drmData = [];
     $scope.initialSettings = {
         audio: null,
@@ -438,6 +439,15 @@ app.controller('DashController', function ($scope, sources, contributors, dashif
         $scope.optionsGutter = bool;
     };
 
+    $scope.toggleUploadGutter = function(bool) {
+        $scope.uploadGutter = bool;
+    }
+
+    $scope.fileChanged = function(ele) {
+        $scope.files = ele.files;
+        $scope.$apply();
+    }
+
     $scope.selectVideoQuality = function (quality) {
         $scope.player.setQualityFor('video', quality);
     };
@@ -574,10 +584,6 @@ app.controller('DashController', function ($scope, sources, contributors, dashif
 
     $scope.getChartButtonLabel = function () {
         return $scope.chartEnabled ? 'Disable' : 'Enable';
-    };
-
-    $scope.getOptionsButtonLabel = function () {
-        return $scope.optionsGutter ? 'Hide Options' : 'Show Options';
     };
 
     $scope.setDrmKeySystem = function (item) {

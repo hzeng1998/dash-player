@@ -3,228 +3,314 @@ Tutorial Name: Off Canvas Sliding Navigation
 Author: Samuel Dalusung
 */
 
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+#sidebar {
+    width: 360px;
+    position: fixed;
+    top: 0;
+    left: -360px;
+    height: 100vh;
+    z-index: 999;
+    background: #fff;
+    transition: all 0.3s;
+    overflow-y: scroll;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+}
+
+#sidebar.active {
+    left: 0;
+}
+
+#dismiss {
+    width: 35px;
+    height: 35px;
+    line-height: 35px;
+    text-align: center;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    cursor: pointer;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.overlay {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    display: none;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #dbdbdf;
+    text-align: center;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid #47748b;
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: 1.1em;
+    display: block;
+}
+#sidebar ul li a:hover {
+    color: #7386D5;
+    background: #fff;
+}
+
+#sidebar ul li.active > a, a[aria-expanded="true"] {
+    color: #fff;
+    background: #6d7fcc;
+}
 
 
-/* CONTAINERS
--------------------------------------------------*/
+a[data-toggle="collapse"] {
+    position: relative;
+}
 
+a[aria-expanded="false"]::before, a[aria-expanded="true"]::before {
+    content: '\e259';
+    display: block;
+    position: absolute;
+    right: 20px;
+    font-family: 'Glyphicons Halflings';
+    font-size: 0.6em;
+}
+a[aria-expanded="true"]::before {
+    content: '\e260';
+}
+
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #6d7fcc;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+a.download {
+    background: #fff;
+    color: #7386D5;
+}
+a.article, a.article:hover {
+    background: #6d7fcc !important;
+    color: #fff !important;
+}
 
 
 #canvas {
-    width: 100%;
-    height: 100%;
-    position: relative;
+  width: 100%;
+  height: 100%;
+  position: relative;
 
-  -webkit-transform:translateX(0);
-   -moz-transform:translateX(0);
-    -ms-transform:translateX(0);
-     -o-transform:translateX(0);
-        transform:translateX(0);
+  -webkit-transform: translateX(0);
+  -moz-transform: translateX(0);
+  -ms-transform: translateX(0);
+  -o-transform: translateX(0);
+  transform: translateX(0);
 
-   -webkit-transition:.5s ease all;
-   -moz-transition:.5s ease all;
-     -o-transition:.5s ease all;
-        transition:.5s ease all;
-
- 
+  -webkit-transition: 0.5s ease all;
+  -moz-transition: 0.5s ease all;
+  -o-transition: 0.5s ease all;
+  transition: 0.5s ease all;
 }
 
 #nav {
-    width: 360px;
-    height: 100%;
-    background: #ffffff;
-    position: absolute;
-    left: -380px;
-    top: 0;
-    overflow: scroll;
-    
-    -webkit-transition:.5s ease all;
-   -moz-transition:.5s ease all;
-     -o-transition:.5s ease all;
-        transition:.5s ease all;
-    
-    /* By default, rotate the menu 90deg inwards */
-    -webkit-transform:rotateY(-90deg);
-   -moz-transform:rotateY(-90deg);
-    -ms-transform:rotateY(-90deg);
-     -o-transform:rotateY(-90deg);
-        transform:rotateY(-90deg);
+  width: 360px;
+  height: 100%;
+  background: #ffffff;
+  position: absolute;
+  left: -380px;
+  top: 0;
+  overflow: scroll;
+
+  -webkit-transition: 0.5s ease all;
+  -moz-transition: 0.5s ease all;
+  -o-transition: 0.5s ease all;
+  transition: 0.5s ease all;
+
+  /* By default, rotate the menu 90deg inwards */
+  -webkit-transform: rotateY(-90deg);
+  -moz-transform: rotateY(-90deg);
+  -ms-transform: rotateY(-90deg);
+  -o-transform: rotateY(-90deg);
+  transform: rotateY(-90deg);
 }
 
 .container.display-nav #canvas {
-   -webkit-transform:translateX(300px);
-   -moz-transform:translateX(300px);
-    -ms-transform:translateX(300px);
-     -o-transform:translateX(300px);
-        transform:translateX(300px);
+  -webkit-transform: translateX(300px);
+  -moz-transform: translateX(300px);
+  -ms-transform: translateX(300px);
+  -o-transform: translateX(300px);
+  transform: translateX(300px);
 }
 
 /* transition the menu with perspective on "show-nav" */
 .container.display-nav #nav {
-    
-    -webkit-transform-origin:100% 50%;
-   -moz-transform-origin:100% 50%;
-    -ms-transform-origin:100% 50%;
-     -o-transform-origin:100% 50%;
-        transform-origin:100% 50%;
-    
-    -webkit-transform:perspective(600px) rotateY(0deg);
-   -moz-transform:perspective(600px) rotateY(0deg);
-    -ms-transform:perspective(600px) rotateY(0deg);
-     -o-transform:perspective(600px) rotateY(0deg);
-        transform:perspective(600px) rotateY(0deg);
+  -webkit-transform-origin: 100% 50%;
+  -moz-transform-origin: 100% 50%;
+  -ms-transform-origin: 100% 50%;
+  -o-transform-origin: 100% 50%;
+  transform-origin: 100% 50%;
 
+  -webkit-transform: perspective(600px) rotateY(0deg);
+  -moz-transform: perspective(600px) rotateY(0deg);
+  -ms-transform: perspective(600px) rotateY(0deg);
+  -o-transform: perspective(600px) rotateY(0deg);
+  transform: perspective(600px) rotateY(0deg);
 }
-
 
 /* UTILITIES
 -------------------------------------------------*/
 
-#bars{
-	font-size: 40px;
-    margin-right: 20px;
-    margin-top: 10px;
-	color: #38935f;
+#title {
+  color: rgba(0, 0, 0, 0.4);
+  text-shadow: 0 0 1px rgba(0, 0, 0, 0.5);
+  font-weight: 300;
+  font-size: 2em;
+  font-family: "Raleway", Arial;
 }
-
-#bars:hover{
-       color: #48b978
-}
-
-#title{
-	margin-left: 80px;
-	padding: 1em;
-	color: rgba(0,0,0,0.4);
-	text-shadow: 0 0 1px rgba(0,0,0,0.5);
-	font-weight: 300;
-	font-size: 2em;
-	font-family: 'Raleway', Arial;
-}
-
-
 
 a.back {
-   color: #38935f;
-   width: 200px;
-   text-decoration: none; 
-   text-align: center; 
-   font-family: 'Raleway'; 
-   font-size: 20px;
-   font-weight: 600;
-   display: block;
-   margin: 50px auto 0 auto;
-   border: 2px solid #38935f;
-   padding: 0;
-
+  color: #38935f;
+  width: 200px;
+  text-decoration: none;
+  text-align: center;
+  font-family: "Raleway";
+  font-size: 20px;
+  font-weight: 600;
+  display: block;
+  margin: 50px auto 0 auto;
+  border: 2px solid #38935f;
+  padding: 0;
 }
 
-a.back:hover{
-   color: #48b978; 
- 
-   border: 2px solid #48b978;
-}
+a.back:hover {
+  color: #48b978;
 
+  border: 2px solid #48b978;
+}
 
 .clear {
-    clear: both;
-    display: block;
-    overflow: hidden;
-    visibility: hidden;
+  clear: both;
+  display: block;
+  overflow: hidden;
+  visibility: hidden;
 }
-
-
 
 /* TOGGLE NAV
 -------------------------------------------------*/
 
 #toggle {
-    list-style: none;
-    margin-top: 10px;
+  list-style: none;
+  margin-top: 10px;
 }
 #toggle div:hover {
-    background: rgba(0,0,0,0.2);
-	-webkit-box-shadow:inset 0 -1px rgba(0,0,0,0);
-   -moz-box-shadow:inset 0 -1px rgba(0,0,0,0);
-        box-shadow:inset 0 -1px rgba(0,0,0,0);
-	color: #fff;
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 -1px rgba(0, 0, 0, 0);
+  -moz-box-shadow: inset 0 -1px rgba(0, 0, 0, 0);
+  box-shadow: inset 0 -1px rgba(0, 0, 0, 0);
+  color: #fff;
 }
 #toggle div.active {
-    background: #ffffff;
+  background: #ffffff;
 }
 #toggle div {
-    cursor: pointer;
-    display: block;
-    display: -webkit-box;
-    -webkit-box-orient: horizontal;
+  cursor: pointer;
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
 }
 
- span.menu-icons {
-    font-size: 20px;
-    height: 20px;
-    width: 22px;
-    float: left;
-    margin: 11px 0px 10px 37px;
-    color: #fff;
+span.menu-icons {
+  font-size: 20px;
+  height: 20px;
+  width: 22px;
+  float: left;
+  margin: 11px 0px 10px 37px;
+  color: #fff;
 }
-
 
 span.the-btn {
-    float: right;
-    font-size: 20px;
-    height: 30px;
-    width: 43px;
-    margin-top: 10px;
-	margin-right: 8px;
-    padding:0;
-    color: #fff;
+  float: right;
+  font-size: 20px;
+  height: 30px;
+  width: 43px;
+  margin-top: 10px;
+  margin-right: 8px;
+  padding: 0;
+  color: #fff;
 }
 
 #toggle ul {
-    list-style: disc;
-    display: none;
-    color: #ffffff;
-   background: rgba(0,0,0,0.2);
-	-webkit-box-shadow:inset 0 -1px rgba(0,0,0,0);
-   -moz-box-shadow:inset 0 -1px rgba(0,0,0,0);
-        box-shadow:inset 0 -1px rgba(0,0,0,0);
-
+  list-style: disc;
+  display: none;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 -1px rgba(0, 0, 0, 0);
+  -moz-box-shadow: inset 0 -1px rgba(0, 0, 0, 0);
+  box-shadow: inset 0 -1px rgba(0, 0, 0, 0);
 }
 
 #toggle li p {
-    line-height: 20px;
-    max-height: 40px;
-    color: #000;
-    list-style: circle;
-    width: 120px;
-    padding: 0;
-    word-break:break-all;
-    text-align: left;
+  line-height: 20px;
+  max-height: 40px;
+  color: #000;
+  list-style: circle;
+  width: 120px;
+  padding: 0;
+  word-break: break-all;
+  text-align: left;
 }
 #toggle p {
-    margin-left: 10px;
-    margin-top: 10px;
-    padding: 0;
-    font-weight: normal;
-    font-size: 14px;
-    text-decoration: none;
-    display: -webkit-box;
-    overflow: hidden;
+  margin-left: 10px;
+  margin-top: 10px;
+  padding: 0;
+  font-weight: normal;
+  font-size: 14px;
+  text-decoration: none;
+  display: -webkit-box;
+  overflow: hidden;
 }
 
 #toggle img {
-    margin-left: 10px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
 }
 
 #toggle #video_id {
-    margin-left: 30px;
-    width: 25px;
-    height: 25px;
-    color: white;
-    background: #66CD00;
-    border-radius : 5px;
-    text-align: center;
-    Line-Height: 25px;
+  margin-left: 30px;
+  width: 25px;
+  height: 25px;
+  color: white;
+  background: #66cd00;
+  border-radius: 5px;
+  text-align: center;
+  line-height: 25px;
 }
