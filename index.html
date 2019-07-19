@@ -110,23 +110,16 @@
       <div class="row title-header">
         <div class="branding">
           <a href="#" class="toggle-nav" id="bars"><i class="fa fa-bars"></i></a>
-          <a href="https://github.com/hzeng1998/dash-player" target="_blank"><img class="image"
-              src="app/img/if.png" /></a>
-
+          <a href="https://github.com/hzeng1998/dash-player" target="_blank">
+            <img class="image" src="app/img/if.png" />
+          </a>
           <span id="commit-info">
             <!-- commit-info --></span>
         </div>
 
         <!-- Using iframe to solve pre-flight request issue from GIT-->
-        <div class="top-buttons">
-          <iframe id="star-button"
-            src="//ghbtns.com/github-btn.html?user=hzeng1998&repo=dash-player&type=watch&count=true&size=large"
-            height="30" width="150">
-          </iframe>
-          <iframe id="fork-button"
-            src="//ghbtns.com/github-btn.html?user=hzeng1998&repo=dash-player&type=fork&count=true&size=large"
-            height="30" width="150">
-          </iframe>
+        <div class="top-buttons" ng-click="toggleOptionsGutter(!optionsGutter)" ng-cloak>
+            <img src="./app/img/Settings-595b40b65ba036ed117d1629.svg" style="width:55px;height:50px" />
         </div>
       </div>
 
@@ -143,9 +136,6 @@
           </div>
         </div>
         <button type="submit" class="btn btn-primary" id='uploadButton' onclick="handleUpload()">Confirm</button>
-        <button class="btn btn-default" ng-click="toggleOptionsGutter(!optionsGutter)" ng-cloak>
-          {{getOptionsButtonLabel()}}
-        </button>
         <script>
           var socket = io('http://137.132.92.142:8082/');
           socket.on('progress', msg => {
