@@ -45,7 +45,7 @@
 
 </head>
 
-<body ng-controller="DashController">
+<body ng-controller="DashController" class="scrollbar-deep-blue">
 
   <!-- Mobile Stream Menu-->
   <div class="modal fade" id="streamModal">
@@ -76,7 +76,7 @@
   <!-- TITLE BAR -->
   <div class="container">
     <div class="wrapper">
-      <nav id="sidebar" class="scrollbar-juicy-peach">
+      <nav id="sidebar" class="scrollbar-dusty-grass">
         <div id="dismiss">
           <a href="#"><img src="./app/img/Close Window-595b40b65ba036ed117d0856.svg" style="width:35px;height:35px"></a>
         </div>
@@ -102,16 +102,16 @@
               $('a[aria-expanded=true]').attr('aria-expanded', 'false');
             });
             $.ajax({
-              url: 'http://137.132.92.142:8082/video_list',
+              url: '/video_list',
               type: 'GET',
               success: function (video_list) {
                 for (var i = 0; i < video_list.length; i++) {
-                  var mpdPath = "http://137.132.92.142:8082" + video_list[i].url + ".mpd";
+                  var mpdPath = "" + video_list[i].url + ".mpd";
                   $('#toggle').append('<li>\n' +
-                    '            <div>\n' +
+                    '            <div onclick= loadVideo(\'' + mpdPath + '\')>\n' +
                     '              <h4 id="video_id">' + (i + 1) + '</h4>' +
-                    '              <img src=' + 'http://137.132.92.142:8082' + video_list[i].url + '.jpg width="100">\n' +
-                    '              <p onclick= loadVideo(\'' + mpdPath + '\')>' + video_list[i].name + '</p>' +
+                    '              <img src=' + '' + video_list[i].url + '.jpg width="100">\n' +
+                    '              <p>' + video_list[i].name + '</p>' +
                     '            </div>\n' +
                     '          </li>')
                 }
@@ -179,7 +179,7 @@
         var handleSelect = function (event) {
           console.log(event);
         }
-        var socket = io('http://137.132.92.142:8082/');
+        var socket = io('/');
         socket.on('progress', msg => {
           $('#fileUploadProcess').attr({ 'aria-valuenow': msg, 'style': 'width:' + msg + '%' });
           if (msg == '100') {
@@ -198,7 +198,7 @@
           var formData = new FormData();
           formData.append("upload", $("#FormControlFile")[0].files[0]);
           $.ajax({
-            url: 'http://137.132.92.142:8082/upload_video',
+            url: '/upload_video',
             type: 'POST',
             data: formData,
             processData: false,
@@ -215,7 +215,7 @@
               resetProgress('#fileUploadProcess');
             },
             success: function () {
-              $("#uploadButton").text('TRANSCODING');
+              $("#uploadButton").text('TRANSCODE');
               resetProgress('#fileUploadProcess');
             }
           });

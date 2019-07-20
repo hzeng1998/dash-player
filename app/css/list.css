@@ -228,6 +228,7 @@ a.back:hover {
 #toggle {
   list-style: none;
   margin-top: 10px;
+  padding: 0;
 }
 #toggle div:hover {
   background: rgba(0, 0, 0, 0.2);
@@ -281,10 +282,11 @@ span.the-btn {
   max-height: 40px;
   color: #000;
   list-style: circle;
-  width: 120px;
+  max-width: 115px;
   padding: 0;
   word-break: break-all;
   text-align: left;
+  overflow-wrap: break-word;
 }
 #toggle p {
   margin-left: 10px;
@@ -305,7 +307,7 @@ span.the-btn {
 }
 
 #toggle #video_id {
-  margin-left: 30px;
+  margin-left: 15px;
   width: 25px;
   height: 25px;
   color: white;
