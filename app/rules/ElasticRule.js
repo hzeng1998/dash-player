@@ -40,12 +40,6 @@ function ElasticRuleClass() {
       currentRequest = null,
       downloadTime,
       totalTime,
-      calculatedBandwidth,
-      currentBandwidth,
-      latencyInBandwidth,
-      switchUpRatioSafetyFactor,
-      currentRepresentation,
-      count,
       receiveRate = 0,
       isPlaying = 0,
       queueLength = 0,
@@ -128,7 +122,10 @@ function ElasticRuleClass() {
 
     // receive rate
     receiveRate = ElasticRuleClass.playerInstance.getAverageThroughput("video");
-
+    //receiveRate = totalBytesLength * 8 / (totalTime * 1000);
+    console.log('Current receiveRate: ', totalBytesLength * 8 / (totalTime * 1000));
+    
+    console.log('Smoothed receiveRate: ', ElasticRuleClass.playerInstance.getAverageThroughput("video"));
     //get queue length
     queueLength = dashMetrics.getCurrentBufferLevel(metrics);
 

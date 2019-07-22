@@ -391,11 +391,13 @@ app.controller('DashController', function ($scope, sources, contributors, dashif
         $scope.player.setABRStrategy(strategy);
     };
 
+    let qT = 15;
+
     $scope.toggleUseCustomABRRules = function () {
         $scope.player.getThumbnail($scope.player.time());
         if ($scope.customABRRulesSelected) {
             $scope.player.useDefaultABRRules(false);
-            $scope.player.addABRCustomRule('qualitySwitchRules', 'ElasticRule', ElasticRuleFactory(player, {qT: 15, kp : 0.01, ki: 0.001})); /* jshint ignore:line */
+            $scope.player.addABRCustomRule('qualitySwitchRules', 'ElasticRule', ElasticRuleFactory(player, {qT: qT, kp : 0.01, ki: 0.001})); /* jshint ignore:line */
         } else {
             $scope.player.useDefaultABRRules(true);
             $scope.player.removeABRCustomRule('ElasticRule');
@@ -404,7 +406,7 @@ app.controller('DashController', function ($scope, sources, contributors, dashif
     
     $scope.customABRRulesSelected = true;
     $scope.player.useDefaultABRRules(false);
-    $scope.player.addABRCustomRule('qualitySwitchRules', 'ElasticRule', ElasticRuleFactory(player, {qT: 15, kp : 0.01, ki: 0.001})); /* jshint ignore:line */
+    $scope.player.addABRCustomRule('qualitySwitchRules', 'ElasticRule', ElasticRuleFactory(player, {qT: qT, kp : 0.01, ki: 0.001})); /* jshint ignore:line */
 
     $scope.toggleFastSwitch = function () {
         $scope.player.setFastSwitchEnabled($scope.fastSwitchSelected);

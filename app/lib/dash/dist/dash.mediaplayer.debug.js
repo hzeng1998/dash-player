@@ -37551,12 +37551,12 @@ var DEFAULT_LOCAL_STORAGE_MEDIA_SETTINGS_EXPIRATION = 360000;
 var BANDWIDTH_SAFETY_FACTOR = 0.9;
 var ABANDON_LOAD_TIMEOUT = 10000;
 
-var BUFFER_TO_KEEP = 20;
+var BUFFER_TO_KEEP = 60;
 var BUFFER_AHEAD_TO_KEEP = 80;
 var BUFFER_PRUNING_INTERVAL = 10;
 var DEFAULT_MIN_BUFFER_TIME = 12;
 var DEFAULT_MIN_BUFFER_TIME_FAST_SWITCH = 20;
-var BUFFER_TIME_AT_TOP_QUALITY = 30;
+var BUFFER_TIME_AT_TOP_QUALITY = 60;
 var BUFFER_TIME_AT_TOP_QUALITY_LONG_FORM = 60;
 var LONG_FORM_CONTENT_DURATION_THRESHOLD = 600;
 var SEGMENT_OVERLAP_TOLERANCE_TIME = 0.2;
@@ -40761,6 +40761,12 @@ function ABRRulesCollection(config) {
         // add custom ABR rules if any
         var customRules = mediaPlayerModel.getABRCustomRules();
         customRules.forEach(function (rule) {
+
+            abandonFragmentRules.push((0, _AbandonRequestsRule2['default'])(context).create({
+                metricsModel: metricsModel,
+                dashMetrics: dashMetrics,
+                mediaPlayerModel: mediaPlayerModel
+            }));
             if (rule.type === QUALITY_SWITCH_RULES) {
                 qualitySwitchRules.push(rule.rule(context).create());
             }
