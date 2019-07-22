@@ -106,14 +106,14 @@
               type: 'GET',
               success: function (video_list) {
                 for (var i = 0; i < video_list.length; i++) {
-                  var mpdPath = "" + video_list[i].url + ".mpd";
-                  $('#toggle').append('<li>\n' +
-                    '            <div onclick= loadVideo(\'' + mpdPath + '\')>\n' +
-                    '              <h4 id="video_id">' + (i + 1) + '</h4>' +
-                    '              <img src=' + '' + video_list[i].url + '.jpg width="100">\n' +
-                    '              <p>' + video_list[i].name + '</p>' +
-                    '            </div>\n' +
-                    '          </li>')
+                  var mpdPath = `${video_list[i].url}.mpd`;
+                  $('#toggle').append(`<li>
+                    <div onclick= loadVideo('${mpdPath}')>
+                      <h4 id="video_id">${i + 1}</h4> 
+                      <img src='${video_list[i].url}.jpg' width="100" /> 
+                      <p>${video_list[i].name}</p> 
+                    </div>
+                  </li>`);
                 }
               }
             });
@@ -146,7 +146,7 @@
       </div>
     </div>
 
-    <div class="row" style="display: {{!uploadGutter ? 'none':'block'}}">
+    <div class="row" ng-style="{display: !uploadGutter ? 'none':'block'}">
 
 
       <div class="form-group col-xs-2" style="display: none">
@@ -181,6 +181,13 @@
         }
         var socket = io('/');
         socket.on('progress', msg => {
+
+          if (msg === 'start') {
+            return;
+          }
+
+          $('#uploadButton').attr('disabled') ? null : $('#uploadButton').attr({ 'disabled': true });
+          $('#uploadButton').text() === 'TRANSCODE' ? null : $('#uploadButton').text('TRANSCODE');
           $('#fileUploadProcess').attr({ 'aria-valuenow': msg, 'style': 'width:' + msg + '%' });
           if (msg == '100') {
             $('#uploadButton').removeAttr('disabled');
