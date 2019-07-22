@@ -106,9 +106,8 @@
               type: 'GET',
               success: function (video_list) {
                 for (var i = 0; i < video_list.length; i++) {
-                  var mpdPath = `${video_list[i].url}.mpd`;
                   $('#toggle').append(`<li>
-                    <div onclick= loadVideo('${mpdPath}')>
+                    <div onclick="loadVideo('${video_list[i].url}.mpd')">
                       <h4 id="video_id">${i + 1}</h4> 
                       <img src='${video_list[i].url}.jpg' width="100" /> 
                       <p>${video_list[i].name}</p> 
