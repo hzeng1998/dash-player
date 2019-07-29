@@ -284,6 +284,7 @@ app.controller('DashController', function ($scope, sources, contributors, dashif
     $scope.player.setFastSwitchEnabled($scope.fastSwitchSelected);
     $scope.player.setAutoSwitchQualityFor('video', $scope.videoAutoSwitchSelected);
     $scope.player.setJumpGaps($scope.jumpGapsSelected);
+    //$scope.player.setStableBufferTime(3);
     // Add HTML-rendered TTML subtitles except for Firefox < v49 (issue #1164)
     if (doesTimeMarchesOn()) {
         $scope.player.attachTTMLRenderingDiv($('#video-caption')[0]);

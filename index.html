@@ -107,9 +107,9 @@
               success: function (video_list) {
                 for (var i = 0; i < video_list.length; i++) {
                   $('#toggle').append(`<li>
-                    <div onclick="loadVideo('${video_list[i].url}.mpd')">
+                    <div onclick='loadVideo("${video_list[i].url.replace('\'', '&apos;')}.mpd")'>
                       <h4 id="video_id">${i + 1}</h4> 
-                      <img src='${video_list[i].url}.jpg' width="100" /> 
+                      <img src="${video_list[i].url}.jpg" width="100" /> 
                       <p>${video_list[i].name}</p> 
                     </div>
                   </li>`);
